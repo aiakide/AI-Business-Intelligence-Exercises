@@ -22,7 +22,7 @@ $$0,\ 1,\ 1,\ 2,\ 2,\ 2,\ 3,\ 5$$
 
 **b)** Welches Lagemaß beschreibt die "typische" Schadenhäufigkeit hier am besten? Begründe kurz — beachte den Wert 5 am rechten Rand der Verteilung.
 
-**c)** Berechne die Varianz und die Standardabweichung. Berechne beides einmal als **Populationsmaß** (Division durch $n$) und einmal als **Stichprobenmaß** (Division durch $n-1$).
+**c)** Berechne die Stichprobenvarianz $s^2 = \dfrac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2$ und die Standardabweichung $s$.
 
 **d)** Was bedeutet die Standardabweichung hier inhaltlich, in einem Satz an einen Fachbereichsleiter ohne Statistik-Hintergrund formuliert?
 
@@ -42,43 +42,41 @@ Für 5 Fahrzeuge liegen Alter (in Jahren) und die zuletzt abgerechneten Reparatu
 
 **a)** Berechne $\bar{x}$ und $\bar{y}$.
 
-**b)** Stelle eine Tabelle mit den Abweichungen $(x_i - \bar{x})$, $(y_i - \bar{y})$ und ihrem Produkt auf. Summiere die Produkte ($S_{xy}$).
+**b)** Stelle eine Tabelle mit den Abweichungen $(x_i - \bar{x})$, $(y_i - \bar{y})$ und ihrem Produkt auf. Summiere die Produkte — das ist der Zähler der Kovarianz-Formel.
 
-**c)** Berechne die Kovarianz (Stichprobenformel, Division durch $n-1$).
+**c)** Berechne die Kovarianz $\text{Cov}(x,y) = \dfrac{1}{n-1}\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})$.
 
-**d)** Berechne zusätzlich $S_{xx} = \sum (x_i-\bar{x})^2$ und $S_{yy} = \sum (y_i-\bar{y})^2$, und daraus den Korrelationskoeffizienten $r$.
+**d)** Berechne zusätzlich die Stichprobenvarianzen $s_x^2$ und $s_y^2$ (gleiche Formel wie in Aufgabe 1c, einmal für $x$, einmal für $y$), und daraus den Pearson-Korrelationskoeffizienten $r = \dfrac{\text{Cov}(x,y)}{s_x \cdot s_y}$.
 
 **e)** Interpretiere $r$: Richtung und Stärke des Zusammenhangs. Ist Kausalität belegt?
 
-> Behalte $S_{xy}$, $S_{xx}$, $S_{yy}$ — Du brauchst sie in Aufgabe 4 weiter.
+> Behalte $\text{Cov}(x,y)$ und $s_x^2$ — Du brauchst beide in Aufgabe 4 wieder.
 
 ---
 
 ## Aufgabe 3 — z-Transformation (≈8 Min)
 
-Nutze weiterhin den Datensatz aus Aufgabe 2 (Reparaturkosten $y$).
+Nutze weiterhin den Datensatz aus Aufgabe 2 (Reparaturkosten $y$) und die Standardabweichung $s_y$, die Du dort in Teilaufgabe d) berechnet hast.
 
-**a)** Berechne die Populationsvarianz und -Standardabweichung von $y$ (nutze $S_{yy}$ aus Aufgabe 2, Division durch $n$).
+**a)** Standardisiere jeden der 5 Reparaturkosten-Werte mit $z_i = \dfrac{y_i - \bar{y}}{s_y}$.
 
-**b)** Standardisiere jeden der 5 Reparaturkosten-Werte ($z = \frac{y_i - \bar{y}}{\sigma}$).
+**b)** Welches Fahrzeug hat den auffälligsten (am weitesten von 0 entfernten) $z$-Wert? Was sagt das über diesen Fall aus?
 
-**c)** Welches Fahrzeug hat den auffälligsten (am weitesten von 0 entfernten) $z$-Wert? Was sagt das über diesen Fall aus?
-
-**d)** Kontrollfrage: Was sollte die Summe aller $z$-Werte (näherungsweise) ergeben? Prüfe das an Deinem Ergebnis.
+**c)** Kontrollfrage: Was sollte die Summe aller $z$-Werte (näherungsweise) ergeben? Prüfe das an Deinem Ergebnis.
 
 ---
 
 ## Aufgabe 4 — Lineare Regression von Hand (≈15 Min)
 
-Weiter mit dem Datensatz aus Aufgabe 2/3.
+Weiter mit dem Datensatz und den Zwischenergebnissen aus Aufgabe 2.
 
-**a)** Berechne die Steigung $b = \dfrac{S_{xy}}{S_{xx}}$ und den Achsenabschnitt $a = \bar{y} - b\bar{x}$ (Methode der kleinsten Quadrate).
+**a)** Berechne die Steigung $b = \dfrac{\text{Cov}(x,y)}{s_x^2}$ und den Achsenabschnitt $a = \bar{y} - b\bar{x}$ (Methode der kleinsten Quadrate, OLS).
 
-**b)** Formuliere die Regressionsgleichung $\hat{y} = a + bx$.
+**b)** Formuliere die Gleichung der Regressionsgeraden $\hat{y} = a + bx$.
 
-**c)** Ein sechstes Fahrzeug ist 12 Jahre alt. Sage die erwarteten Reparaturkosten voraus. Wie sicher solltest Du bei dieser Vorhersage sein — bewege Dich das Modell noch innerhalb des beobachteten Datenbereichs?
+**c)** Ein sechstes Fahrzeug ist 12 Jahre alt. Sage die erwarteten Reparaturkosten voraus. Bewegt sich diese Vorhersage noch innerhalb des beobachteten Datenbereichs, oder handelt es sich um eine Extrapolation?
 
-**d)** Berechne $R^2$ (Hinweis: für die einfache lineare Regression gilt $R^2 = r^2$ — nutze Dein $r$ aus Aufgabe 2). Interpretiere den Wert für einen Fachbereich, der nicht weiß, was $R^2$ ist.
+**d)** Bestimme für jedes der 5 Fahrzeuge den vorhergesagten Wert $\hat{y}$ und das Residuum $(y - \hat{y})$, und summiere die quadrierten Residuen zu $SS_{\text{res}} = \sum(y-\hat{y})^2$. $SS_{\text{tot}}$ hast Du bereits in Aufgabe 2b berechnet — es ist die Summe der quadrierten Abweichungen von $\bar{y}$. Berechne daraus $R^2 = 1 - \dfrac{SS_{\text{res}}}{SS_{\text{tot}}}$ und interpretiere den Wert für einen Fachbereich, der nicht weiß, was $R^2$ ist.
 
 ---
 
@@ -112,4 +110,4 @@ Drei Kolleg:innen präsentieren Dir ihre Ergebnisse. $\alpha = 0{,}05$ ist die v
 
 **b)** Fall 3 ist ein Sonderfall. Was läuft hier schief, obwohl der $p$-Wert unter $\alpha$ liegt? (Stichwort: Effektgröße vs. statistische Signifikanz, Stichprobengröße)
 
-**c)** Was würdest Du dem Fachbereich empfehlen: sich bei Entscheidungen allein auf $p$-Werte zu verlassen? Begründe in 2–3 Sätzen.
+**c)** Was würdest Du dem Fachbereich empfehlen: Soll man sich bei Entscheidungen allein auf $p$-Werte verlassen? Begründe in 2–3 Sätzen.

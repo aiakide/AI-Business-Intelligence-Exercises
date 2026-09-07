@@ -20,17 +20,16 @@ Daten: $0, 1, 1, 2, 2, 2, 3, 5$ ($n=8$, bereits sortiert)
 
 Mittelwert, Median und Modus sind hier zufällig identisch ($=2$) — ungewöhnlich, aber an diesem kleinen, moderat rechtsschiefen Datensatz (Ausreißer bei 5) so möglich. In der Praxis wäre bei stärkerer Schiefe der **Median** robuster, da er von dem Ausreißerwert 5 nicht verzerrt wird (der Mittelwert würde bei stärkerer Rechtsschiefe nach oben gezogen). Lehrpunkt: Studierende sollen erkennen, *warum* der Median hier robust ist, nicht nur den Wert nennen.
 
-**c) Varianz & Standardabweichung**
+**c) Stichprobenvarianz & Standardabweichung**
 
 Abweichungen vom Mittelwert (2): $-2, -1, -1, 0, 0, 0, 1, 3$
 Quadrierte Abweichungen: $4, 1, 1, 0, 0, 0, 1, 9$ → Summe $= 16$
 
-- Populationsvarianz: $\sigma^2 = \dfrac{16}{8} = 2$ → $\sigma = \sqrt{2} \approx 1{,}41$
-- Stichprobenvarianz: $s^2 = \dfrac{16}{7} \approx 2{,}29$ → $s = \sqrt{2{,}29} \approx 1{,}51$
+$$s^2 = \frac{16}{n-1} = \frac{16}{7} \approx 2{,}29 \quad\Rightarrow\quad s = \sqrt{2{,}29} \approx 1{,}51$$
 
 **d) Interpretation**
 
-*"Im Schnitt melden unsere Versicherten etwa 2 Schäden pro Jahr, mit einer typischen Schwankung von rund 1,5 Schäden nach oben oder unten — die meisten liegen also zwischen 0 und 3,5 Schäden."*
+*"Im Schnitt melden unsere Versicherten etwa 2 Schäden pro Jahr, mit einer typischen Schwankung von rund 1,5 Schäden nach oben oder unten — die meisten liegen also zwischen 0,5 und 3,5 Schäden."*
 
 ---
 
@@ -46,18 +45,19 @@ Quadrierte Abweichungen: $4, 1, 1, 0, 0, 0, 1, 9$ → Summe $= 16$
 
 **a)** $\bar{x} = \dfrac{30}{5} = 6$, $\bar{y} = \dfrac{6.000}{5} = 1.200$
 
-**b)** $S_{xy} = 2.320+700+0+400+2.520 = 5.940$
+**b)** Summe der Produkte $= 2.320+700+0+400+2.520 = 5.940$
 
-**c) Kovarianz (Stichprobe)**
+**c) Kovarianz**
 
-$$\text{cov}(x,y) = \frac{S_{xy}}{n-1} = \frac{5.940}{4} = 1.485$$
+$$\text{Cov}(x,y) = \frac{5.940}{n-1} = \frac{5.940}{4} = 1.485\ \text{EUR·Jahre}$$
 
-**d) $S_{xx}$, $S_{yy}$, Korrelationskoeffizient**
+**d) Varianzen und Korrelationskoeffizient**
 
-- $S_{xx} = (-4)^2+(-2)^2+0^2+2^2+4^2 = 16+4+0+4+16 = 40$
-- $S_{yy} = 580^2+350^2+100^2+200^2+630^2 = 336.400+122.500+10.000+40.000+396.900 = 905.800$
+Quadrierte Abweichungen: $x$: $16, 4, 0, 4, 16$ → Summe $=40$; $\ y$: $336.400, 122.500, 10.000, 40.000, 396.900$ → Summe $=905.800$
 
-$$r = \frac{S_{xy}}{\sqrt{S_{xx}\cdot S_{yy}}} = \frac{5.940}{\sqrt{40 \cdot 905.800}} = \frac{5.940}{\sqrt{36.232.000}} \approx \frac{5.940}{6.019{,}3} \approx 0{,}987$$
+$$s_x^2 = \frac{40}{4} = 10 \;\Rightarrow\; s_x \approx 3{,}16 \qquad s_y^2 = \frac{905.800}{4} = 226.450 \;\Rightarrow\; s_y \approx 475{,}87$$
+
+$$r = \frac{\text{Cov}(x,y)}{s_x \cdot s_y} = \frac{1.485}{3{,}16 \times 475{,}87} \approx \frac{1.485}{1.505{,}0} \approx 0{,}987$$
 
 **e) Interpretation**
 
@@ -67,25 +67,21 @@ $r \approx 0{,}99$: ein sehr starker, **positiver** linearer Zusammenhang — ä
 
 ## Aufgabe 3 — z-Transformation
 
-**a) Populationsvarianz/-Standardabweichung von $y$**
-
-$$\sigma_y^2 = \frac{S_{yy}}{n} = \frac{905.800}{5} = 181.160 \quad\Rightarrow\quad \sigma_y = \sqrt{181.160} \approx 425{,}63$$
-
-**b) z-Werte** ($z_i = \frac{y_i - 1.200}{425{,}63}$)
+**a) z-Werte** ($z_i = \frac{y_i - 1.200}{475{,}87}$, mit $s_y$ aus Aufgabe 2d)
 
 | Fahrzeug | $y$ | $y-\bar y$ | $z$ |
 |---|---|---|---|
-| A | 620 | −580 | −1,363 |
-| B | 850 | −350 | −0,822 |
-| C | 1.300 | +100 | +0,235 |
-| D | 1.400 | +200 | +0,470 |
-| E | 1.830 | +630 | +1,480 |
+| A | 620 | −580 | −1,219 |
+| B | 850 | −350 | −0,735 |
+| C | 1.300 | +100 | +0,210 |
+| D | 1.400 | +200 | +0,420 |
+| E | 1.830 | +630 | +1,324 |
 
-**c)** Fahrzeug E hat mit $z \approx +1{,}48$ den auffälligsten Wert — seine Reparaturkosten liegen fast 1,5 Standardabweichungen über dem Durchschnitt, deutlich der teuerste Fall relativ zur Gesamtverteilung.
+**b)** Fahrzeug E hat mit $z \approx +1{,}32$ den auffälligsten Wert — seine Reparaturkosten liegen mehr als eine Standardabweichung über dem Durchschnitt, deutlich der teuerste Fall relativ zur Gesamtverteilung.
 
-**d) Kontrollfrage**
+**c) Kontrollfrage**
 
-Die Summe aller $z$-Werte muss (näherungsweise) **0** ergeben, da $z$ um den Mittelwert zentriert ist: $-1{,}363-0{,}822+0{,}235+0{,}470+1{,}480 \approx 0{,}000$ ✓ (kleine Abweichung nur durch Rundung).
+Die Summe aller $z$-Werte muss (näherungsweise) **0** ergeben, da $z$ um den Mittelwert zentriert ist: $-1{,}219-0{,}735+0{,}210+0{,}420+1{,}324 \approx 0{,}000$ ✓ (kleine Abweichung nur durch Rundung).
 
 ---
 
@@ -93,11 +89,11 @@ Die Summe aller $z$-Werte muss (näherungsweise) **0** ergeben, da $z$ um den Mi
 
 **a) Steigung & Achsenabschnitt**
 
-$$b = \frac{S_{xy}}{S_{xx}} = \frac{5.940}{40} = 148{,}5$$
+$$b = \frac{\text{Cov}(x,y)}{s_x^2} = \frac{1.485}{10} = 148{,}5$$
 
 $$a = \bar y - b\bar x = 1.200 - 148{,}5 \cdot 6 = 1.200 - 891 = 309$$
 
-**b) Regressionsgleichung**
+**b) Regressionsgerade**
 
 $$\hat{y} = 309 + 148{,}5 \cdot x$$
 
@@ -109,9 +105,27 @@ Der beobachtete Datenbereich reicht nur bis $x=10$ — bei $x=12$ **extrapoliert
 
 **d) $R^2$**
 
-Da $R^2 = r^2$ für die einfache lineare Regression: $R^2 = 0{,}987^2 \approx 0{,}974$
+Vorhergesagte Werte, Residuen und quadrierte Residuen je Fahrzeug:
+
+| $x$ | $y$ (echt) | $\hat y$ (Modell) | $y-\hat y$ | $(y-\hat y)^2$ |
+|---|---|---|---|---|
+| 2 | 620 | 606 | +14 | 196 |
+| 4 | 850 | 903 | −53 | 2.809 |
+| 6 | 1.300 | 1.200 | +100 | 10.000 |
+| 8 | 1.400 | 1.497 | −97 | 9.409 |
+| 10 | 1.830 | 1.794 | +36 | 1.296 |
+
+$$SS_{\text{res}} = \sum(y-\hat y)^2 = 196+2.809+10.000+9.409+1.296 = 23.710$$
+
+$SS_{\text{tot}}$ ist die Summe der quadrierten Abweichungen vom Mittelwert $\bar y$ — dieselbe Zahl, die in Aufgabe 2d als Zwischenschritt für $s_y^2$ berechnet wurde:
+
+$$SS_{\text{tot}} = 905.800$$
+
+$$R^2 = 1 - \frac{SS_{\text{res}}}{SS_{\text{tot}}} = 1 - \frac{23.710}{905.800} \approx 1 - 0{,}0262 \approx 0{,}974$$
 
 *Interpretation für den Fachbereich:* "Etwa 97 % der Schwankungen in den Reparaturkosten lassen sich allein durch das Fahrzeugalter erklären — ein sehr starkes Modell für nur eine erklärende Variable."
+
+> Kontrolle: Für die einfache lineare Regression mit nur einer erklärenden Variable stimmt $R^2$ rechnerisch mit $r^2$ überein: $0{,}987^2 \approx 0{,}974$ ✓ — beide Wege führen zum selben Ergebnis.
 
 ---
 
@@ -157,4 +171,4 @@ Bei sehr großen Stichproben (hier 850.000 Verträge) werden selbst **winzige, p
 
 **c) Empfehlung an den Fachbereich**
 
-Nicht allein auf $p$-Werte verlassen. Immer zusammen berichten: Effektgröße (wie groß, in EUR/Prozentpunkten?), Konfidenzintervall, Stichprobengröße und fachliche Plausibilität. Ein $p$-Wert beantwortet nur "ist da überhaupt etwas?", nicht "ist es wichtig genug, um zu handeln?".
+Nein — man sollte sich nicht allein auf $p$-Werte verlassen. Immer zusammen berichten: Effektgröße (wie groß, in EUR/Prozentpunkten?), Konfidenzintervall, Stichprobengröße und fachliche Plausibilität. Ein $p$-Wert beantwortet nur "ist da überhaupt etwas?", nicht "ist es wichtig genug, um zu handeln?".
